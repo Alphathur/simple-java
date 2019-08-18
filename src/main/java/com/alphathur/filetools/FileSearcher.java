@@ -1,13 +1,12 @@
 package com.alphathur.filetools;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FileSearcher {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         List<File> files = getFileList ( "D:\\", "mp4", "flv", "avi" );
         System.out.println ( "文件数量：" + files.size () + ",文件路径：" );
         for (File f : files) {
