@@ -3,7 +3,7 @@ package com.alphathur;
 import static org.junit.Assert.assertTrue;
 
 import com.alphathur.excel.ExcelTitle;
-import com.alphathur.excel.ExcelWritter;
+import com.alphathur.excel.ExcelWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -27,7 +27,7 @@ public class AppTest {
                 students.add(new Student(i, "member" + i, i * 55D, new Date(), calendar));
             }
 //            ExcelWritter.setExcelValueFormatter(new TextValueFormatter());
-            ExcelWritter
+            ExcelWriter
                 .writeToExcel(students, Student.class, "/Users/zhuhuiyuan/Downloads/2.xlsx");
         } catch (Exception ex) {
             ex.printStackTrace();

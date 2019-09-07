@@ -26,7 +26,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 @Slf4j
-public class ExcelWritter {
+public class ExcelWriter {
 
   private static ThreadLocal<ExcelValueFormatter> valueFormatter = ThreadLocal
       .withInitial(() -> new DateValueFormatter("yyyy-MM-dd"));
