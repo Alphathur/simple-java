@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class FileCopyer {
 
     public static void main(String[] args) throws InterruptedException, IOException {
-        List<File> files = FileSearcher.getFileList ( "D:\\test_files", "txt" );
+        List<File> files = FileSearcher.getFileList ( "G:\\BaiduNetdiskDownload\\MAIN MENU RANDOMIZER ver 3dot31", "dds" );
         copyAll ( files, "H:\\test_files" );
     }
 
@@ -30,7 +30,8 @@ public class FileCopyer {
         ExecutorService exec = Executors.newFixedThreadPool ( Runtime.getRuntime ().availableProcessors () * 2 );
         Set<String> fileNameFilter = new HashSet<> ();
         files.stream ().forEach ( sourceFile -> {
-            String fileName = getFileNameByFilter ( fileNameFilter, sourceFile.getName () );
+//            String fileName = getFileNameByFilter ( fileNameFilter, sourceFile.getName () );
+            String fileName = getTimeFileNameByFilter ( sourceFile.getName () );
             File targetFile = new File ( targetUrl + "\\" + fileName );
             Runnable runnable = new FileRunnable ( sourceFile.toPath (), targetFile.toPath () );
             exec.execute ( runnable );
@@ -40,6 +41,13 @@ public class FileCopyer {
         System.out.println ( "Copy Done" );
     }
 
+    /**
+     * generate a new filename based on source filename, if file names are duplicated , then generate new file name by add number
+     *
+     * @param fileNameFilter
+     * @param fileName
+     * @return
+     */
     private static String getFileNameByFilter(Set<String> fileNameFilter, String fileName) {
         boolean exist = !fileNameFilter.add ( fileName );
         int i = 0;
@@ -52,6 +60,18 @@ public class FileCopyer {
         }
         return fileName;
     }
+
+    /**
+     * generate a new filename with System.nanoTime(). and ignore the sourc filename
+     *
+     * @param fileName
+     * @return
+     */
+    private static String getTimeFileNameByFilter(String fileName) {
+        String extensionName = getExtensionName ( fileName );
+        return System.nanoTime () + "." + extensionName;
+    }
+
 
     /**
      * 获取文件扩展名

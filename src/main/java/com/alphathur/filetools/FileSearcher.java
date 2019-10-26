@@ -7,7 +7,7 @@ import java.util.List;
 public class FileSearcher {
 
     public static void main(String[] args) {
-        List<File> files = getFileList ( "D:\\", "mp4", "flv", "avi" );
+        List<File> files = getFileList ( "G:\\BaiduNetdiskDownload\\MAIN MENU RANDOMIZER ver 3dot31", "dds" );
         System.out.println ( "文件数量：" + files.size () + ",文件路径：" );
         for (File f : files) {
             System.out.println ( f.getAbsolutePath () );
@@ -40,8 +40,8 @@ public class FileSearcher {
     }
 
     private static boolean isRightFile(String fileName, String... regex) {
-        for (String reg :regex) {
-            if (fileName.endsWith (reg)) {
+        for (String reg : regex) {
+            if (fileName.endsWith ( reg )) {
                 return true;
             }
         }
